@@ -1,0 +1,759 @@
+<!--
+  FG Post Graduate College for Women - Single page website (index.html)
+  - Combined HTML + CSS + JS
+  - Place college hero image at images/college-front.jpg
+  - Font: Poppins from Google Fonts (included)
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>F.G Post Graduate College for Women</title>
+
+  <!-- Google Font: Playfair Display (Headings) & Inter (Body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-p1Cm7rV1V8b6l0x0U4x3q6Tqf8q3xJm2QfZb7Gq6s4k3bQ9k8d2X8rG5z6y1y8Z3W9Vgq1j2Z3a4b5c6d7e8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      /* Professional Color Palette */
+      --primary: #0f2b46;       /* Deep Navy */
+      --primary-light: #1a3c5e;
+      --accent: #d4af37;        /* Gold */
+      --accent-hover: #b4942b;
+      --bg-body: #f8f9fa;
+      --bg-card: #ffffff;
+      --text-main: #2c3e50;
+      --text-muted: #6c757d;
+      --border-light: #e9ecef;
+      
+      /* Typography */
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+      
+      /* Effects */
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding-top: 70px; /* Space for fixed navbar */
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      color: var(--primary);
+    }
+
+    /* ---------- Header / Nav (Bootstrap Overrides) ---------- */
+    .navbar {
+      background: linear-gradient(90deg, var(--primary), #2c3e50) !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 0.8rem 0;
+    }
+    
+    .navbar-brand {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff !important;
+    }
+    
+    .navbar-brand img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      object-fit: cover;
+    }
+    
+    .nav-link {
+      color: rgba(255,255,255,0.9) !important;
+      font-weight: 500;
+      margin: 0 5px;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent) !important;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; width: 0; height: 2px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+    
+    .nav-link:hover::after { width: 100%; }
+
+    /* ---------- Hero (Parallax) ---------- */
+    .hero {
+      height: 90vh;
+      min-height: 600px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      /* Original Image with Parallax */
+      background: 
+        linear-gradient(rgba(15, 43, 70, 0.6), rgba(15, 43, 70, 0.5)),
+        url('images/inst_6849136172b872.53526253.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* Parallax Effect */
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 24px;
+      animation: fadeInDown 1.2s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .btn-hero {
+      background: var(--accent);
+      color: #0f2b46;
+      border: none;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-hero:hover {
+      background: #fff;
+      color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255,255,255,0.25);
+    }
+
+    /* ---------- Sections ---------- */
+    .section-title {
+      font-size: 2.5rem;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    /* ---------- About ---------- */
+    .about-section {
+      background: #fff;
+      padding: 80px 0;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ---------- Courses Grid ---------- */
+    .course-card {
+      /* Colorful Gradients will be applied via JS */
+      border-radius: var(--radius-md);
+      padding: 40px 30px;
+      text-align: center;
+      transition: var(--transition);
+      border: none;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      height: 100%;
+    }
+
+    .course-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .course-card i {
+      font-size: 3.5rem;
+      margin-bottom: 24px;
+      color: rgba(255,255,255,0.95);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .course-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .course-sub {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    /* Subjects List inside card */
+    .subjects-list {
+      display: none;
+      text-align: left;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .subjects-list a {
+      display: block;
+      padding: 8px 12px;
+      color: #fff;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.1);
+      margin-bottom: 5px;
+    }
+
+    .subjects-list a:hover {
+      background: rgba(255,255,255,0.25);
+      padding-left: 18px;
+    }
+
+    /* ---------- Admission ---------- */
+    .admission-card {
+      background: #fff;
+      padding: 50px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border-top: 5px solid var(--accent);
+    }
+
+    .apply-btn {
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 50px;
+      border: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(15, 43, 70, 0.2);
+    }
+
+    .apply-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- Contact ---------- */
+    .contact-card {
+      background: #fff;
+      padding: 30px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: var(--transition);
+      border-bottom: 3px solid transparent;
+      height: 100%;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      border-bottom-color: var(--accent);
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ---------- Modal ---------- */
+    .modal-overlay {
+      position:fixed;inset:0;background:rgba(15, 43, 70, 0.8);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px;
+      backdrop-filter: blur(5px);
+    }
+    .modal-box {
+      background: #fff;
+      border-radius: var(--radius-md);
+      max-width: 800px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: fadeInDown 0.3s ease-out;
+    }
+    .modal-header-custom {
+      padding: 20px 30px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .modal-close {
+      position: absolute; top: 15px; right: 20px;
+      background: transparent; border: 0; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);
+    }
+    .modal-body-custom { padding: 30px; }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header / Nav (Bootstrap) -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid" style="max-width: 1200px;">
+      <a class="navbar-brand" href="#">
+        <img src="images/logo.jpeg" alt="Logo">
+        <span>FG PGC Women</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="#admission">Admission</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero" aria-label="College hero">
+    <div class="hero-content">
+      <h1>Welcome to F.G Post Graduate College for Women</h1>
+      <p>Empowering Students, Building Futures</p>
+      <a class="btn-hero" href="#courses">Explore Courses</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="container mt-5">
+    <div class="about-section text-center">
+      <h2 class="section-title">About Us</h2>
+      <p style="max-width:900px;margin:0 auto;color:#555;font-size:1.1rem;">
+        F.G Post Graduate College is committed to providing quality education and fostering excellence in learning.
+        With experienced faculty and modern facilities, we prepare students for successful careers and meaningful lives.
+        Our mission is to create a supportive learning environment where every student can reach their full potential.
+      </p>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section id="courses" class="container mt-5">
+    <h2 class="section-title">Our Programs</h2>
+    <div class="row g-4" id="courseGrid">
+      <!-- Course cards injected by JS -->
+    </div>
+  </section>
+
+  <!-- ADMISSION -->
+  <section id="admission" class="container mt-5">
+    <h2 class="section-title">Admission Criteria & Eligibility</h2>
+    <div class="admission-card">
+      <p class="text-center mb-4">
+        <strong>General eligibility for all BS programs:</strong> Candidates must have passed Intermediate (FA/FSc/ICS) or equivalent
+        from a recognized board with a minimum of <strong>45% marks</strong> (as per University of the Punjab BS admission rules).
+        Admissions are granted on merit. Applicants with O/A Levels must provide an equivalence certificate.
+      </p>
+
+      <div class="text-center">
+        <button class="apply-btn" id="applyNowBtn">Apply Now</button>
+      </div>
+
+      <!-- Hidden Admission Form -->
+      <div id="admissionForm" style="display:none; margin-top:30px; max-width:600px; margin-left:auto; margin-right:auto;">
+        <div class="card p-4 border-0 shadow-sm bg-light">
+          <h3 class="text-center mb-4">Student Admission Form</h3>
+          <form id="studentForm">
+            <div class="mb-3">
+              <label class="form-label fw-bold text-primary">Full Name</label>
+              <input type="text" name="name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold text-primary">Roll Number</label>
+              <input type="text" name="rollno" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold text-primary">Email</label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold text-primary">Select Course</label>
+              <select name="course" class="form-select" required>
+                <option value="">-- Select Course --</option>
+                <option value="BS Computer Science">BS Computer Science</option>
+                <option value="BS English">BS English</option>
+                <option value="BS Psychology">BS Psychology</option>
+                <option value="BS Mathematics">BS Mathematics</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success w-100 py-2 fw-bold">Submit Application</button>
+          </form>
+          <div id="formMessage" class="mt-3 text-center text-success fw-bold"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container mt-5 mb-5">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="contact-card">
+          <h4>Address</h4>
+          <p>Aslam Market, Quaid Ave, Wah Cantt</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="contact-card">
+          <h4>Phone</h4>
+          <p>(051) 9314313</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="contact-card">
+          <h4>Email</h4>
+          <p>fg.pgc.wah@gmail.com</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="contact-card">
+          <h4>Office Hours</h4>
+          <p>Mon - Fri: 9:00 AM - 2:00 PM</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (Bootstrap) -->
+  <footer class="bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 F.G Post Graduate College for Women. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Modal overlay -->
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <div class="modal-header-custom">
+        <i id="modalIcon" style="font-size:24px;color:var(--accent)"></i>
+        <h3 id="modalTitle" style="margin:0;font-size:1.5rem;">Subject Title</h3>
+      </div>
+      <div class="modal-body-custom" id="modalBody">
+        <p>Subject description...</p>
+      </div>
+      <div style="padding:15px 30px;background:#f8f9fa;font-size:0.85rem;color:#666;border-top:1px solid #eee;">
+        Summarised from Punjab University Lahore syllabus outline.
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll to top -->
+  <button id="scrollTopBtn" style="position:fixed;right:20px;bottom:20px;background:var(--accent);color:#fff;border:0;width:50px;height:50px;border-radius:50%;font-size:20px;display:none;cursor:pointer;z-index:1050;box-shadow:0 4px 10px rgba(0,0,0,0.2);">↑</button>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    /***********************
+     * DATA: courses + subjects
+     ***********************/
+    const courses = [
+      {
+        id: 'bsit',
+        title: 'BS Information Technology',
+        icon: 'fa-laptop-code',
+        gradient: 'linear-gradient(135deg,#1abc9c,#16a085)',
+        intro: 'Computing, software, networks and applied IT.',
+        subjects: [
+          { title: 'Web Development', desc: 'HTML, CSS, JavaScript, responsive design and basic front-end frameworks.' },
+          { title: 'Database Systems', desc: 'Relational database design, SQL, normalization, transactions.' },
+          { title: 'Computer Networks', desc: 'Network models, protocols (TCP/IP), routing, switching.' },
+          { title: 'Software Engineering', desc: 'Software development life-cycle, requirements engineering, UML.' },
+          { title: 'Information Security', desc: 'Fundamentals of information assurance, encryption, authentication.' },
+          { title: 'Cloud Computing', desc: 'Introduction to cloud platforms, virtualization, deployment models.' }
+        ]
+      },
+      {
+        id: 'bscs',
+        title: 'BS Computer Science',
+        icon: 'fa-desktop',
+        gradient: 'linear-gradient(135deg,#3498db,#2980b9)',
+        intro: 'Strong foundation in computing theory and systems.',
+        subjects: [
+          { title: 'Programming Fundamentals', desc: 'Procedural and object-oriented programming concepts.' },
+          { title: 'Data Structures', desc: 'Arrays, linked lists, stacks, queues, trees, graphs.' },
+          { title: 'Artificial Intelligence', desc: 'Basic AI concepts including search algorithms, ML fundamentals.' },
+          { title: 'Operating Systems', desc: 'Process scheduling, concurrency, memory management.' },
+          { title: 'Human-Computer Interaction', desc: 'Designing user-centered interfaces, usability testing.' },
+          { title: 'Mobile App Development', desc: 'Principles of mobile programming, responsive UI.' }
+        ]
+      },
+      {
+        id: 'math',
+        title: 'BS Mathematics',
+        icon: 'fa-square-root-alt',
+        gradient: 'linear-gradient(135deg,#9b59b6,#8e44ad)',
+        intro: 'Pure and applied mathematics for analytical careers.',
+        subjects: [
+          { title: 'Calculus I', desc: 'Limits, continuity, derivatives and integrals.' },
+          { title: 'Linear Algebra', desc: 'Vector spaces, matrices, determinants, eigenvalues.' },
+          { title: 'Differential Equations', desc: 'Ordinary differential equations, methods of solution.' },
+          { title: 'Real Analysis', desc: 'Rigorous approach to sequences, series, convergence.' },
+          { title: 'Numerical Methods', desc: 'Approximation techniques for solving mathematical problems.' },
+          { title: 'Statistics', desc: 'Probability theory, statistical inference, distributions.' }
+        ]
+      },
+      {
+        id: 'eng',
+        title: 'BS English (Literature)',
+        icon: 'fa-book-open',
+        gradient: 'linear-gradient(135deg,#e67e22,#d35400)',
+        intro: 'Literary study, linguistics and critical skills.',
+        subjects: [
+          { title: 'Poetry', desc: 'Study of poetic forms, meter, imagery, and close reading.' },
+          { title: 'Drama', desc: 'Analysis of plays from different periods, performance context.' },
+          { title: 'Novel', desc: 'Study of the novel as a genre, narrative techniques.' },
+          { title: 'Linguistics', desc: 'Foundations of phonetics, morphology, syntax and semantics.' },
+          { title: 'Literary Criticism', desc: 'Major critical theories and movements.' },
+          { title: 'Research Methods', desc: 'Academic writing, citation, library research.' }
+        ]
+      },
+      {
+        id: 'psy',
+        title: 'BS Applied Psychology',
+        icon: 'fa-brain',
+        gradient: 'linear-gradient(135deg,#f1c40f,#f39c12)',
+        intro: 'Study of human behavior, assessment and applied techniques.',
+        subjects: [
+          { title: 'Introduction to Psychology', desc: 'Major schools in psychology, history and core concepts.' },
+          { title: 'Social Psychology', desc: 'How individuals think about, influence, and relate to one another.' },
+          { title: 'Developmental Psychology', desc: 'Lifespan development, cognitive and social growth.' },
+          { title: 'Abnormal Psychology', desc: 'Understanding disorders, diagnostic frameworks.' },
+          { title: 'Experimental Psychology', desc: 'Design and analysis of psychological experiments.' },
+          { title: 'Psychological Testing', desc: 'Principles of psychometrics, test construction.' }
+        ]
+      },
+      {
+        id: 'bot',
+        title: 'BS Botany',
+        icon: 'fa-leaf',
+        gradient: 'linear-gradient(135deg,#27ae60,#2ecc71)',
+        intro: 'Plant sciences, ecology and lab skills.',
+        subjects: [
+          { title: 'Plant Anatomy', desc: 'Structure of plant tissues and organs, microscopic techniques.' },
+          { title: 'Genetics', desc: 'Mendelian genetics, molecular genetics, DNA structure.' },
+          { title: 'Ecology', desc: 'Ecosystems, population dynamics, conservation biology.' },
+          { title: 'Plant Physiology', desc: 'Physiological processes, photosynthesis, respiration.' },
+          { title: 'Cell Biology', desc: 'Cell structure, organelles, cellular processes.' },
+          { title: 'Plant Pathology', desc: 'Diseases affecting plants, pathogens, disease cycles.' }
+        ]
+      },
+      {
+        id: 'isl',
+        title: 'BS Islamic Studies',
+        icon: 'fa-mosque',
+        gradient: 'linear-gradient(135deg,#e74c3c,#c0392b)',
+        intro: 'Islamic disciplines: Quran, Hadith, law and history.',
+        subjects: [
+          { title: 'Quranic Studies', desc: 'Study of the Qurʾān, exegesis (tafsir).' },
+          { title: 'Hadith Studies', desc: 'Collections of Hadith, classification, authentication.' },
+          { title: 'Islamic History', desc: 'Key events and figures in Islamic civilization.' },
+          { title: 'Fiqh (Jurisprudence)', desc: 'Principles of Islamic law, major schools of thought.' },
+          { title: 'Islamic Philosophy', desc: 'Major thinkers, theological debates.' },
+          { title: 'Comparative Religion', desc: 'Study of Islamic perspectives in relation to other faiths.' }
+        ]
+      }
+    ];
+
+    /***********************
+     * Render course cards dynamically
+     ***********************/
+    const grid = document.getElementById('courseGrid');
+
+    function createCourseCard(course){
+      const col = document.createElement('div');
+      col.className = 'col-lg-4 col-md-6';
+      
+      const card = document.createElement('div');
+      card.className = 'course-card';
+      card.style.background = course.gradient; // Colorful gradient
+
+      // Inner HTML
+      card.innerHTML = `
+        <i class="fa ${course.icon}"></i>
+        <div class="course-title">${course.title}</div>
+        <div class="course-sub">${course.intro}</div>
+        <div class="subjects-list" id="subjects-${course.id}">
+          ${course.subjects.map((s, idx) => `<a href="#" data-course="${course.id}" data-idx="${idx}">${s.title}</a>`).join('')}
+        </div>
+      `;
+
+      // click to toggle list
+      card.addEventListener('click', function(e){
+        if(e.target.tagName.toLowerCase() === 'a') return;
+        const list = card.querySelector('.subjects-list');
+        const allLists = document.querySelectorAll('.subjects-list');
+        allLists.forEach(l => { if(l !== list) l.style.display = 'none'; });
+        list.style.display = list.style.display === 'block' ? 'none' : 'block';
+      });
+
+      col.appendChild(card);
+      return col;
+    }
+
+    // Append all
+    courses.forEach(c => {
+      grid.appendChild(createCourseCard(c));
+    });
+
+    /***********************
+     * Modal logic
+     ***********************/
+    const overlay = document.getElementById('modalOverlay');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const modalIcon = document.getElementById('modalIcon');
+    const modalClose = document.getElementById('modalClose');
+
+    function openModal(courseId, subjectIdx){
+      const course = courses.find(c => c.id === courseId);
+      if(!course) return;
+      const subject = course.subjects[subjectIdx];
+      if(!subject) return;
+
+      modalTitle.textContent = subject.title;
+      modalBody.innerHTML = `<p>${subject.desc}</p>`;
+      modalIcon.className = `fa ${course.icon}`;
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(){
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function(e){
+      if(e.target === overlay) closeModal();
+    });
+
+    document.body.addEventListener('click', function(e){
+      const a = e.target.closest('a[data-course]');
+      if(!a) return;
+      e.preventDefault();
+      const courseId = a.getAttribute('data-course');
+      const idx = parseInt(a.getAttribute('data-idx'),10);
+      openModal(courseId, idx);
+    });
+
+    /***********************
+     * Form Logic
+     ***********************/
+    const applyBtn = document.getElementById("applyNowBtn");
+    const admissionForm = document.getElementById("admissionForm");
+    const studentForm = document.getElementById("studentForm");
+    const formMessage = document.getElementById("formMessage");
+
+    applyBtn.addEventListener("click", () => {
+      admissionForm.style.display = "block";
+      applyBtn.style.display = "none";
+    });
+
+    studentForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      formMessage.textContent = "✅ Your application has been submitted successfully!";
+      studentForm.reset();
+    });
+
+    /***********************
+     * ScrollTop button
+     ***********************/
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', function(){
+      if(window.pageYOffset > 300){
+        scrollBtn.style.display = 'block';
+      } else {
+        scrollBtn.style.display = 'none';
+      }
+    });
+    scrollBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+    // Close modal on Escape
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        if(overlay.style.display === 'flex') closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
